@@ -1,4 +1,4 @@
-function timer
+function __pomo.timer -d "Timer function"
     if not test (count $argv) -gt 0; 
         echo "timer: Missing duration!"
         return;
