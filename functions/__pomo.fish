@@ -22,18 +22,23 @@ function __pomo -d "Simple pomodoro timer"
 
         if test $operation = $POMO_WORK_VERB
             set -U POMO_WORK $_flag_duration
-        else if test $operation = $POMO_BREAK_VERB
-            set -U POMO_BREAK $_flag_duration
         else
-            echo "How did you even get here??"
-            return 69
+            set -U POMO_BREAK $_flag_duration
         end
     else 
-        echo $operation
-        echo "POMO_WORK: $POMO_WORK"
-        echo "POMO_BREAK: $POMO_BREAK"
-        echo "POMO_WORK_VERB: $POMO_WORK_VERB"
-        echo "POMO_BREAK_VERB: $POMO_BREAK_VERB"
-        echo "POMO_VERBS: $POMO_VERBS"
+        if test $operation = $POMO_WORK_VERB
+
+            echo "Working time!! 💻💻💻" | lolcat
+            set -f duration (string split -f1 'm' $POMO_WORK)
+
+        else
+            echo "Breaktime ☕☕" | lolcat
+
+            set -f duration (string split -f1 'm' $POMO_BREAK)
+        end
+
+        echo $duration
+
+        __pomo.timer $duration --min
     end
 end
