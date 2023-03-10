@@ -8,7 +8,7 @@ I wanted to make this just to familiarise myself further with fish, and it's bee
 
 Install with fisher: 
 
-` fisher install Drawserqzez/pomo.fish `
+``` fisher install Drawserqzez/pomo.fish ```
 
 ## Credits
 
