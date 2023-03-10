@@ -31,7 +31,7 @@ function __pomo.timer -d "Timer function"
             set last_set $time
         end
 
-        echo -n -e (date -u -d @$time +%T)\r
+        echo -n -e "Time left ->" (date -u -d @$time +%T)\r
     end
 
 end
