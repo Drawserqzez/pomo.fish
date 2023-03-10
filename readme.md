@@ -16,3 +16,8 @@ Credits to [z.fish](https://github.com/jethrokuan/z) for inspiration on how to s
 
 Credits to [bashbunni's dotfiles](https://github.com/bashbunni/dotfiles/blob/90b3f14be7691e06ad45b6e4f81bfe7bdefd7234/.zshrc#L41)
 for the inspiration to do this in the first place :)
+
+
+## License
+
+MIT
