@@ -46,12 +46,12 @@ function __pomo_uninstall --on-event pomo_uninstall
     functions -e __pomo_on_work
     functions -e __pomo_set_verbs
 
-    set -e $POMO_CMD
+    set -e POMO_CMD
 
-    set -e $POMO_VERBS
-    set -e $POMO_WORK_VERB
-    set -e $POMO_BREAK_VERB
+    set -e POMO_VERBS
+    set -e POMO_WORK_VERB
+    set -e POMO_BREAK_VERB
 
-    set -e $POMO_WORK
-    set -e $POMO_BREAK
+    set -e POMO_WORK
+    set -e POMO_BREAK
 end
