@@ -8,7 +8,30 @@ I wanted to make this just to familiarise myself further with fish, and it's bee
 
 Install with fisher: 
 
-``` fisher install Drawserqzez/pomo.fish ```
+```fish
+
+fisher install Drawserqzez/pomo.fish 
+
+```
+
+## Usage
+
+To start the work timer just type: 
+```fish
+
+pomo work
+
+```
+
+This will start the timer with the default time.
+To change the default time you have to append the -d flag to the end of your command. 
+See ` pomo --help ` for more information.
+
+Break works in the same way as work. 
+
+
+There is also support for changing the verbs to arbitrary values, but the tool doesn't have that implemented as of writing this.
+Instead you have to adjust the POMO_WORK_CMD and POMO_BREAK_CMD env-variables.
 
 ## Credits
 
