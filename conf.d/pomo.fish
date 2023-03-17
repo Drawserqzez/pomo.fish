@@ -5,12 +5,12 @@ if test -z $POMO_DATA
         set -U POMO_DATA_DIR "$XDG_DATA_HOME/pomo"
     end
 
-    set -U POMO_DATA "$POMO_DATA_DIR/data"
+    set -U POMO_DATA "$POMO_DATA_DIR/stats"
 end
 
 if test ! -e "$POMO_DATA"
     if test ! -e "$POMO_DATA_DIR"
-        mkdirt -p -m 700 "$POMO_DATA_DIR"
+        mkdir -p -m 700 "$POMO_DATA_DIR"
     end
 
     touch "$POMO_DATA"
@@ -36,7 +36,7 @@ if test -z $POMO_BREAK
     set -U POMO_BREAK 10m
 end
 
-if set -q $POMO_VERBS
+if not contains "$POMO_WORK_VERB" $POMO_VERBS; or not contains "$POMO_BREAK_VERB" $POMO_VERBS
     set -U POMO_VERBS $POMO_WORK_VERB $POMO_BREAK_VERB
 end
 
@@ -46,7 +46,7 @@ if test ! -z $POMO_CMD
     end
 end
 
-function __pomo_on_exit --on-event fish_exit
+function __pomo_on_exit --on-event finished
     __pomo.track
 
     set -e POMO_STARTED
@@ -78,6 +78,8 @@ function __pomo_uninstall --on-event pomo_uninstall
 
     set -e POMO_WORK
     set -e POMO_BREAK
+
+    echo "To remove pomo completely, delete the stats file at $POMO_DATA"
 
     set -e POMO_DATA
     set -e POMO_DATA_DIR

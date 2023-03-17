@@ -41,6 +41,6 @@ function __pomo -d "Simple pomodoro timer"
 
         __pomo.timer $duration --min
 
-        echo "Well done, you did it!" | lolcat # TODO: Add time finished 
+        emit finished
     end
 end
