@@ -29,7 +29,6 @@ function __pomo -d "Simple pomodoro timer"
         return 0
     else 
         if test $operation = $POMO_WORK_VERB
-
             echo "Working time!! 💻💻💻" | lolcat
             set -f duration (string split -f1 'm' $POMO_WORK)
 
@@ -38,9 +37,10 @@ function __pomo -d "Simple pomodoro timer"
 
             set -f duration (string split -f1 'm' $POMO_BREAK)
         end
+        set -U POMO_STARTED (date +%s)
 
         __pomo.timer $duration --min
 
-        echo "Well done, you did it!" | lolcat # TODO: Add time finished 
+        emit finished
     end
 end
