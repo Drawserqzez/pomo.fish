@@ -1,3 +1,21 @@
+if test -z $POMO_DATA
+    if test -z $XDG_DATA_HOME
+        set -U POMO_DATA_DIR "$HOME/.local/share/pomo"
+    else
+        set -U POMO_DATA_DIR "$XDG_DATA_HOME/pomo"
+    end
+
+    set -U POMO_DATA "$POMO_DATA_DIR/data"
+end
+
+if test ! -e "$POMO_DATA"
+    if test ! -e "$POMO_DATA_DIR"
+        mkdirt -p -m 700 "$POMO_DATA_DIR"
+    end
+
+    touch "$POMO_DATA"
+end
+
 if test -z $POMO_CMD
     set -U POMO_CMD pomo
 end
@@ -28,6 +46,12 @@ if test ! -z $POMO_CMD
     end
 end
 
+function __pomo_on_exit --on-event fish_exit
+    __pomo.track
+
+    set -e POMO_STARTED
+end
+
 function __pomo_on_break --on-variable POMO_BREAK_VERB
     __pomo_set_verbs
 end
@@ -54,4 +78,7 @@ function __pomo_uninstall --on-event pomo_uninstall
 
     set -e POMO_WORK
     set -e POMO_BREAK
+
+    set -e POMO_DATA
+    set -e POMO_DATA_DIR
 end
